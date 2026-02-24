@@ -37,7 +37,9 @@ export interface TreeVizPerson {
 /**
  * Format a Gramps date value as a human-readable string
  */
-export function formatGrampsDate(date: GrampsDate | null | undefined): string | null {
+export function formatGrampsDate(
+	date: GrampsDate | null | undefined
+): string | null {
 	if (!date) {
 		return null;
 	}

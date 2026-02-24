@@ -46,7 +46,9 @@ export class MediaAPI {
 	 * Get a media object by handle
 	 */
 	async get(handle: string): Promise<GrampsMedia> {
-		const response = await this.http.get<GrampsMedia>(`/api/media/${handle}`);
+		const response = await this.http.get<GrampsMedia>(
+			`/api/media/${handle}`
+		);
 		if (!response.data) {
 			throw new Error(`Media ${handle} not found`);
 		}

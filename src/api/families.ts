@@ -38,7 +38,9 @@ export class FamiliesAPI {
 	 */
 	async list(options?: GrampsListOptions): Promise<GrampsFamily[]> {
 		const qs = buildQuery(options);
-		const response = await this.http.get<GrampsFamily[]>(`/api/families${qs}`);
+		const response = await this.http.get<GrampsFamily[]>(
+			`/api/families${qs}`
+		);
 		return response.data ?? [];
 	}
 
@@ -46,7 +48,9 @@ export class FamiliesAPI {
 	 * Get a family by handle
 	 */
 	async get(handle: string): Promise<GrampsFamily> {
-		const response = await this.http.get<GrampsFamily>(`/api/families/${handle}`);
+		const response = await this.http.get<GrampsFamily>(
+			`/api/families/${handle}`
+		);
 		if (!response.data) {
 			throw new Error(`Family ${handle} not found`);
 		}
@@ -57,7 +61,9 @@ export class FamiliesAPI {
 	 * Get timeline for a family
 	 */
 	async getTimeline(handle: string): Promise<unknown[]> {
-		const response = await this.http.get<unknown[]>(`/api/families/${handle}/timeline`);
+		const response = await this.http.get<unknown[]>(
+			`/api/families/${handle}/timeline`
+		);
 		return response.data ?? [];
 	}
 }

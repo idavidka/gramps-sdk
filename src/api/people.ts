@@ -53,16 +53,23 @@ export class PeopleAPI {
 	 */
 	async list(options?: GrampsListOptions): Promise<GrampsPerson[]> {
 		const qs = buildQuery(options);
-		const response = await this.http.get<GrampsPerson[]>(`/api/people${qs}`);
+		const response = await this.http.get<GrampsPerson[]>(
+			`/api/people${qs}`
+		);
 		return response.data ?? [];
 	}
 
 	/**
 	 * Get a person by handle
 	 */
-	async get(handle: string, options?: GrampsListOptions): Promise<GrampsPerson> {
+	async get(
+		handle: string,
+		options?: GrampsListOptions
+	): Promise<GrampsPerson> {
 		const qs = buildQuery(options);
-		const response = await this.http.get<GrampsPerson>(`/api/people/${handle}${qs}`);
+		const response = await this.http.get<GrampsPerson>(
+			`/api/people/${handle}${qs}`
+		);
 		if (!response.data) {
 			throw new Error(`Person ${handle} not found`);
 		}
@@ -73,7 +80,9 @@ export class PeopleAPI {
 	 * Get timeline for a person
 	 */
 	async getTimeline(handle: string): Promise<unknown[]> {
-		const response = await this.http.get<unknown[]>(`/api/people/${handle}/timeline`);
+		const response = await this.http.get<unknown[]>(
+			`/api/people/${handle}/timeline`
+		);
 		return response.data ?? [];
 	}
 
@@ -82,7 +91,9 @@ export class PeopleAPI {
 	 */
 	async search(query: string): Promise<GrampsPerson[]> {
 		const params = new URLSearchParams({ filter: query });
-		const response = await this.http.get<GrampsPerson[]>(`/api/people?${params.toString()}`);
+		const response = await this.http.get<GrampsPerson[]>(
+			`/api/people?${params.toString()}`
+		);
 		return response.data ?? [];
 	}
 }

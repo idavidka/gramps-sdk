@@ -43,7 +43,9 @@ export class EventsAPI {
 	 * Get an event by handle
 	 */
 	async get(handle: string): Promise<GrampsEvent> {
-		const response = await this.http.get<GrampsEvent>(`/api/events/${handle}`);
+		const response = await this.http.get<GrampsEvent>(
+			`/api/events/${handle}`
+		);
 		if (!response.data) {
 			throw new Error(`Event ${handle} not found`);
 		}

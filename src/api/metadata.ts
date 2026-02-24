@@ -42,7 +42,9 @@ export class MetadataAPI {
 	 * Get a specific tree by id
 	 */
 	async getTree(treeId: string): Promise<GrampsTreeInfo> {
-		const response = await this.http.get<GrampsTreeInfo>(`/api/trees/${treeId}`);
+		const response = await this.http.get<GrampsTreeInfo>(
+			`/api/trees/${treeId}`
+		);
 		if (!response.data) {
 			throw new Error(`Tree ${treeId} not found`);
 		}

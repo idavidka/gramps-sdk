@@ -6,12 +6,16 @@
 
 import type { GrampsEvent } from "../types/event";
 import type { GrampsFamily } from "../types/family";
-import type { GrampsPlace } from "../types/place";
 import type { GrampsPerson } from "../types/person";
-import { convertEvent, type TreeVizEvent } from "./event";
-import { convertFamily, type TreeVizFamily } from "./family";
-import { convertPerson, formatGrampsDate, type TreeVizPerson } from "./person";
-import { convertPlace, type TreeVizPlace } from "./place";
+import type { GrampsPlace } from "../types/place";
+import { convertEvent } from "./event";
+import type { TreeVizEvent } from "./event";
+import { convertFamily } from "./family";
+import type { TreeVizFamily } from "./family";
+import { convertPerson, formatGrampsDate } from "./person";
+import type { TreeVizPerson } from "./person";
+import { convertPlace } from "./place";
+import type { TreeVizPlace } from "./place";
 
 /**
  * Input data for full tree conversion
@@ -79,7 +83,8 @@ export function convertTree(data: GrampsTreeData): TreeVizTree {
 						converted.birthDate = formatGrampsDate(birthEvent.date);
 						if (birthEvent.place) {
 							const place = placeMap.get(birthEvent.place);
-							converted.birthPlace = place?.title ?? birthEvent.place;
+							converted.birthPlace =
+								place?.title ?? birthEvent.place;
 						}
 					}
 				}
@@ -94,7 +99,8 @@ export function convertTree(data: GrampsTreeData): TreeVizTree {
 						converted.deathDate = formatGrampsDate(deathEvent.date);
 						if (deathEvent.place) {
 							const place = placeMap.get(deathEvent.place);
-							converted.deathPlace = place?.title ?? deathEvent.place;
+							converted.deathPlace =
+								place?.title ?? deathEvent.place;
 						}
 					}
 				}
@@ -121,10 +127,13 @@ export function convertTree(data: GrampsTreeData): TreeVizTree {
 			if (marriageRef) {
 				const marriageEvent = eventMap.get(marriageRef.ref);
 				if (marriageEvent) {
-					converted.marriageDate = formatGrampsDate(marriageEvent.date);
+					converted.marriageDate = formatGrampsDate(
+						marriageEvent.date
+					);
 					if (marriageEvent.place) {
 						const place = placeMap.get(marriageEvent.place);
-						converted.marriagePlace = place?.title ?? marriageEvent.place;
+						converted.marriagePlace =
+							place?.title ?? marriageEvent.place;
 					}
 				}
 			}

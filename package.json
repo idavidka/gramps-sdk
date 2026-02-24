@@ -63,6 +63,14 @@
 	],
 	"author": "idavidka and @treeviz contributors",
 	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git@github.com:idavidka/gramps-sdk.git"
+	},
+	"homepage": "https://github.com/idavidka/gramps-sdk#readme",
+	"bugs": {
+		"url": "https://github.com/idavidka/gramps-sdk/issues"
+	},
 	"devDependencies": {
 		"@types/node": "^25.0.9",
 		"jsdom": "^27.4.0",

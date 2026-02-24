@@ -1,15 +1,19 @@
 # @treeviz/gramps-sdk
 
+> Part of the [@treeviz](https://www.npmjs.com/org/treeviz) organization - A collection of tools for genealogy data processing and visualization.
+
 TypeScript SDK for the [Gramps Web API](https://gramps-project.github.io/gramps-web-api/), enabling TreeViz users to connect their self-hosted Gramps Web servers and import family tree data.
 
 ## Features
 
-- **JWT Authentication** – username/password login with automatic token refresh
-- **Comprehensive API Coverage** – People, Families, Events, Places, Media, Metadata
-- **Data Conversion** – Gramps JSON → TreeViz-compatible format
-- **Full Tree Conversion** – converts an entire Gramps database with cross-reference enrichment
-- **Server Validation** – URL validation and connectivity testing
-- **TypeScript-first** – full type definitions for all Gramps Web API objects
+- ✅ **Full TypeScript Support** - Comprehensive type definitions for all Gramps Web API objects
+- ✅ **JWT Authentication** - Username/password login with automatic token refresh
+- ✅ **Comprehensive API Coverage** - People, Families, Events, Places, Media, Metadata
+- ✅ **Data Conversion** - Gramps JSON → TreeViz-compatible format
+- ✅ **Full Tree Conversion** - Converts an entire Gramps database with cross-reference enrichment
+- ✅ **Server Validation** - URL validation and connectivity testing
+- ✅ **Promise-based API** - Modern async/await syntax
+- ✅ **Configurable Logging** - Custom logger support for troubleshooting
 
 ## Installation
 
@@ -32,10 +36,8 @@ await sdk.connect({ username: 'admin', password: 'secret' });
 const people = await sdk.people.list({ pageSize: 50 });
 console.log(`Found ${people.length} people`);
 
-// Fetch families
+// Fetch families and events for conversion
 const families = await sdk.families.list();
-
-// Fetch events and places for conversion
 const events = await sdk.events.list();
 const places = await sdk.places.list();
 
@@ -66,7 +68,7 @@ const sdk = createGrampsSDK({
 });
 ```
 
-## API Reference
+## API Modules
 
 ### SDK Client
 
@@ -166,6 +168,51 @@ const person = convertPerson(grampsPerson);
 const family = convertFamily(grampsFamily);
 ```
 
+## Configuration
+
+```typescript
+const sdk = createGrampsSDK({
+  // Required
+  serverUrl: 'https://gramps.example.com',
+
+  // Optional
+  accessToken: 'your-jwt-token',   // Pre-existing JWT token
+  refreshToken: 'your-refresh-token',
+  timeoutMs: 30000,                // Request timeout in milliseconds
+  logger: customLogger,            // Custom logger implementation
+});
+```
+
+## Singleton Pattern
+
+```typescript
+import { initGrampsSDK, getGrampsSDK } from '@treeviz/gramps-sdk';
+
+// Initialize once
+initGrampsSDK({ serverUrl: 'https://gramps.example.com' });
+
+// Use anywhere
+const sdk = getGrampsSDK();
+await sdk.connect({ username: 'admin', password: 'secret' });
+const people = await sdk.people.list();
+```
+
+## TypeScript Support
+
+All types are exported for your convenience:
+
+```typescript
+import type {
+  GrampsPerson,
+  GrampsFamily,
+  GrampsEvent,
+  GrampsPlace,
+  GrampsSDKConfig,
+  GrampsListOptions,
+  JWTCredentials,
+} from '@treeviz/gramps-sdk';
+```
+
 ## Gramps Web Server Setup
 
 ### Docker Compose (Recommended)
@@ -198,3 +245,14 @@ location / {
 ## License
 
 MIT
+
+## Contributing
+
+Contributions are welcome! Please read our contributing guidelines.
+
+## Links
+
+- [Gramps Web API Documentation](https://gramps-project.github.io/gramps-web-api/)
+- [Gramps Web GitHub](https://github.com/gramps-project/gramps-web-api)
+- [Gramps Desktop](https://gramps-project.org/)
+- [GitHub Repository](https://github.com/idavidka/gramps-sdk)

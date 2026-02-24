@@ -4,7 +4,11 @@
  * Handles username/password login, token refresh, and token storage.
  */
 
-import type { GrampsAuthConfig, JWTCredentials, JWTTokenResponse } from "../types/auth";
+import type {
+	GrampsAuthConfig,
+	JWTCredentials,
+	JWTTokenResponse,
+} from "../types/auth";
 import { GrampsError, GrampsNetworkError } from "../utils/errors";
 
 const TOKEN_STORAGE_PREFIX = "gramps_sdk";
@@ -30,10 +34,16 @@ export function getTokenStorageKey(
 export function storeTokens(config: GrampsAuthConfig): void {
 	const { serverUrl, accessToken, refreshToken, expiresAt } = config;
 	if (accessToken) {
-		sessionStorage.setItem(getTokenStorageKey(serverUrl, "access"), accessToken);
+		sessionStorage.setItem(
+			getTokenStorageKey(serverUrl, "access"),
+			accessToken
+		);
 	}
 	if (refreshToken) {
-		localStorage.setItem(getTokenStorageKey(serverUrl, "refresh"), refreshToken);
+		localStorage.setItem(
+			getTokenStorageKey(serverUrl, "refresh"),
+			refreshToken
+		);
 	}
 	if (expiresAt !== undefined) {
 		localStorage.setItem(
@@ -61,7 +71,9 @@ export function getStoredRefreshToken(serverUrl: string): string | null {
  * Retrieve stored token expiry for a server
  */
 export function getStoredTokenExpiry(serverUrl: string): number | null {
-	const raw = localStorage.getItem(getTokenStorageKey(serverUrl, "expires_at"));
+	const raw = localStorage.getItem(
+		getTokenStorageKey(serverUrl, "expires_at")
+	);
 	if (raw === null) {
 		return null;
 	}
@@ -120,7 +132,10 @@ export async function login(
 	}
 
 	if (!response.ok) {
-		throw new GrampsError(response.status, `Login failed: HTTP ${response.status}`);
+		throw new GrampsError(
+			response.status,
+			`Login failed: HTTP ${response.status}`
+		);
 	}
 
 	const tokenResponse = (await response.json()) as JWTTokenResponse;
@@ -164,7 +179,10 @@ export async function refreshToken(
 	}
 
 	if (!response.ok) {
-		throw new GrampsError(response.status, `Token refresh failed: HTTP ${response.status}`);
+		throw new GrampsError(
+			response.status,
+			`Token refresh failed: HTTP ${response.status}`
+		);
 	}
 
 	const tokenResponse = (await response.json()) as JWTTokenResponse;

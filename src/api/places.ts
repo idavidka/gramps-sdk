@@ -43,7 +43,9 @@ export class PlacesAPI {
 	 * Get a place by handle
 	 */
 	async get(handle: string): Promise<GrampsPlace> {
-		const response = await this.http.get<GrampsPlace>(`/api/places/${handle}`);
+		const response = await this.http.get<GrampsPlace>(
+			`/api/places/${handle}`
+		);
 		if (!response.data) {
 			throw new Error(`Place ${handle} not found`);
 		}
