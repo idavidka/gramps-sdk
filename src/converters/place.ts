@@ -1,15 +1,15 @@
 /**
  * Gramps Place Converter
  *
- * Converts Gramps Web API place objects to a TreeViz-compatible format.
+ * Converts Gramps Web API place objects to a converted format.
  */
 
 import type { GrampsPlace } from "../types/place";
 
 /**
- * TreeViz-compatible place representation
+ * Converted place representation
  */
-export interface TreeVizPlace {
+export interface ConvertedPlace {
 	handle: string;
 	grampsId: string;
 	name: string;
@@ -30,9 +30,9 @@ function parseCoordinate(value: string | undefined | null): number | null {
 }
 
 /**
- * Convert a Gramps place to the TreeViz place format
+ * Convert a Gramps place to the converted place format
  */
-export function convertPlace(place: GrampsPlace): TreeVizPlace {
+export function convertPlace(place: GrampsPlace): ConvertedPlace {
 	return {
 		handle: place.handle,
 		grampsId: place.gramps_id,

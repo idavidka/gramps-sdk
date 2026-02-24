@@ -1,7 +1,7 @@
 /**
  * Gramps Person Converter
  *
- * Converts Gramps Web API person objects to a TreeViz-compatible format.
+ * Converts Gramps Web API person objects to a converted format.
  */
 
 import type { GrampsDate, GrampsPerson } from "../types/person";
@@ -16,9 +16,9 @@ const GENDER_MAP: Record<number, "M" | "F" | "U"> = {
 };
 
 /**
- * TreeViz-compatible person representation
+ * Converted person representation
  */
-export interface TreeVizPerson {
+export interface ConvertedPerson {
 	id: string;
 	grampsHandle: string;
 	grampsId: string;
@@ -86,9 +86,9 @@ function getPrimarySurname(name: GrampsPerson["primary_name"]): string {
 }
 
 /**
- * Convert a Gramps person to the TreeViz person format
+ * Convert a Gramps person to the converted person format
  */
-export function convertPerson(person: GrampsPerson): TreeVizPerson {
+export function convertPerson(person: GrampsPerson): ConvertedPerson {
 	const gender = GENDER_MAP[person.gender] ?? "U";
 	const firstName = person.primary_name.first_name ?? "";
 	const lastName = getPrimarySurname(person.primary_name);
@@ -124,5 +124,5 @@ export function convertPerson(person: GrampsPerson): TreeVizPerson {
 		// Store raw event refs for downstream use
 		...(birthEventRef ? { _birthEventHandle: birthEventRef.ref } : {}),
 		...(deathEventRef ? { _deathEventHandle: deathEventRef.ref } : {}),
-	} as TreeVizPerson;
+	} as ConvertedPerson;
 }

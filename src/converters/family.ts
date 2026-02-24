@@ -1,15 +1,15 @@
 /**
  * Gramps Family Converter
  *
- * Converts Gramps Web API family objects to a TreeViz-compatible format.
+ * Converts Gramps Web API family objects to a converted format.
  */
 
 import type { GrampsFamily } from "../types/family";
 
 /**
- * TreeViz-compatible family representation
+ * Converted family representation
  */
-export interface TreeVizFamily {
+export interface ConvertedFamily {
 	id: string;
 	grampsHandle: string;
 	grampsId: string;
@@ -22,9 +22,9 @@ export interface TreeVizFamily {
 }
 
 /**
- * Convert a Gramps family to the TreeViz family format
+ * Convert a Gramps family to the converted family format
  */
-export function convertFamily(family: GrampsFamily): TreeVizFamily {
+export function convertFamily(family: GrampsFamily): ConvertedFamily {
 	return {
 		id: family.gramps_id,
 		grampsHandle: family.handle,

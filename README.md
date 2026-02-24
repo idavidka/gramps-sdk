@@ -203,10 +203,11 @@ All types are exported for your convenience:
 
 ```typescript
 import type {
-  GrampsPerson,
-  GrampsFamily,
-  GrampsEvent,
-  GrampsPlace,
+  ConvertedPerson,
+  ConvertedFamily,
+  ConvertedEvent,
+  ConvertedPlace,
+  ConvertedTree,
   GrampsSDKConfig,
   GrampsListOptions,
   JWTCredentials,

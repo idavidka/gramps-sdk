@@ -1,7 +1,7 @@
 /**
  * Gramps Full Tree Converter
  *
- * Converts all Gramps data objects into a unified TreeViz tree representation.
+ * Converts all Gramps data objects into a unified converted tree representation.
  */
 
 import type { GrampsEvent } from "../types/event";
@@ -9,13 +9,13 @@ import type { GrampsFamily } from "../types/family";
 import type { GrampsPerson } from "../types/person";
 import type { GrampsPlace } from "../types/place";
 import { convertEvent } from "./event";
-import type { TreeVizEvent } from "./event";
+import type { ConvertedEvent } from "./event";
 import { convertFamily } from "./family";
-import type { TreeVizFamily } from "./family";
+import type { ConvertedFamily } from "./family";
 import { convertPerson, formatGrampsDate } from "./person";
-import type { TreeVizPerson } from "./person";
+import type { ConvertedPerson } from "./person";
 import { convertPlace } from "./place";
-import type { TreeVizPlace } from "./place";
+import type { ConvertedPlace } from "./place";
 
 /**
  * Input data for full tree conversion
@@ -30,11 +30,11 @@ export interface GrampsTreeData {
 /**
  * Result of a full tree conversion
  */
-export interface TreeVizTree {
-	people: TreeVizPerson[];
-	families: TreeVizFamily[];
-	events: TreeVizEvent[];
-	places: TreeVizPlace[];
+export interface ConvertedTree {
+	people: ConvertedPerson[];
+	families: ConvertedFamily[];
+	events: ConvertedEvent[];
+	places: ConvertedPlace[];
 	report: ConversionReport;
 }
 
@@ -51,9 +51,9 @@ export interface ConversionReport {
 }
 
 /**
- * Convert an entire Gramps dataset to TreeViz format
+ * Convert an entire Gramps dataset to converted format
  */
-export function convertTree(data: GrampsTreeData): TreeVizTree {
+export function convertTree(data: GrampsTreeData): ConvertedTree {
 	const warnings: string[] = [];
 	const errors: string[] = [];
 
@@ -69,7 +69,7 @@ export function convertTree(data: GrampsTreeData): TreeVizTree {
 	}
 
 	// Convert people
-	const people: TreeVizPerson[] = [];
+	const people: ConvertedPerson[] = [];
 	for (const person of data.people) {
 		try {
 			const converted = convertPerson(person);
@@ -115,7 +115,7 @@ export function convertTree(data: GrampsTreeData): TreeVizTree {
 	}
 
 	// Convert families
-	const families: TreeVizFamily[] = [];
+	const families: ConvertedFamily[] = [];
 	for (const family of data.families) {
 		try {
 			const converted = convertFamily(family);
@@ -147,10 +147,10 @@ export function convertTree(data: GrampsTreeData): TreeVizTree {
 	}
 
 	// Convert events
-	const events: TreeVizEvent[] = data.events.map((e) => convertEvent(e));
+	const events: ConvertedEvent[] = data.events.map((e) => convertEvent(e));
 
 	// Convert places
-	const places: TreeVizPlace[] = data.places.map((p) => convertPlace(p));
+	const places: ConvertedPlace[] = data.places.map((p) => convertPlace(p));
 
 	return {
 		people,

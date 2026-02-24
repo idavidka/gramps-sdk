@@ -75,12 +75,12 @@ export {
 	formatGrampsDate,
 } from "./converters";
 export type {
-	TreeVizPerson,
-	TreeVizFamily,
-	TreeVizEvent,
-	TreeVizPlace,
+	ConvertedPerson,
+	ConvertedFamily,
+	ConvertedEvent,
+	ConvertedPlace,
 	GrampsTreeData,
-	TreeVizTree,
+	ConvertedTree,
 	ConversionReport,
 } from "./converters";
 

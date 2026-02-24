@@ -1,16 +1,16 @@
 /**
  * Gramps Event Converter
  *
- * Converts Gramps Web API event objects to a TreeViz-compatible format.
+ * Converts Gramps Web API event objects.
  */
 
 import type { GrampsEvent } from "../types/event";
 import { formatGrampsDate } from "./person";
 
 /**
- * TreeViz-compatible event representation
+ * Converted event representation
  */
-export interface TreeVizEvent {
+export interface ConvertedEvent {
 	handle: string;
 	grampsId: string;
 	type: string;
@@ -20,9 +20,9 @@ export interface TreeVizEvent {
 }
 
 /**
- * Convert a Gramps event to the TreeViz event format
+ * Convert a Gramps event to the converted event format
  */
-export function convertEvent(event: GrampsEvent): TreeVizEvent {
+export function convertEvent(event: GrampsEvent): ConvertedEvent {
 	return {
 		handle: event.handle,
 		grampsId: event.gramps_id,

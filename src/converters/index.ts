@@ -3,16 +3,16 @@
  */
 
 export { convertPerson, formatGrampsDate } from "./person";
-export type { TreeVizPerson } from "./person";
+export type { ConvertedPerson } from "./person";
 
 export { convertFamily } from "./family";
-export type { TreeVizFamily } from "./family";
+export type { ConvertedFamily } from "./family";
 
 export { convertEvent } from "./event";
-export type { TreeVizEvent } from "./event";
+export type { ConvertedEvent } from "./event";
 
 export { convertPlace } from "./place";
-export type { TreeVizPlace } from "./place";
+export type { ConvertedPlace } from "./place";
 
 export { convertTree } from "./tree";
-export type { GrampsTreeData, TreeVizTree, ConversionReport } from "./tree";
+export type { GrampsTreeData, ConvertedTree, ConversionReport } from "./tree";
